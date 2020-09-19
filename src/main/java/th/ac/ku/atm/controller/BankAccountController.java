@@ -22,7 +22,7 @@ public class BankAccountController {
     }
 
     @GetMapping
-    public String getCustomerPage(Model model) {
+    public String getBankAccountPage(Model model) {
         model.addAttribute("allBankAccounts", bankAccountService.getBankAccount());
         return "Bankaccount";
     }
