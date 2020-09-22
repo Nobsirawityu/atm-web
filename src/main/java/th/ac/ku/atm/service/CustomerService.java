@@ -40,7 +40,6 @@ public class CustomerService {
         } catch (EmptyResultDataAccessException e){
             return null;
         }
-
     }
 
     public Customer checkPin(Customer inputCustomer){
