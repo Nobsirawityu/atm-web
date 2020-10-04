@@ -53,17 +53,30 @@ public class BankAccountService {
     }
 
 
-    public void editBankAccount(BankAccount bankAccount) {
-        String url = "http://localhost:8091/api/bankaccount/" +
-                bankAccount.getId();
-        restTemplate.put(url, bankAccount);
-    }
+//    public void editBankAccount(BankAccount bankAccount) {
+//        String url = "http://localhost:8091/api/bankaccount/" +
+//                bankAccount.getId();
+//        restTemplate.put(url, bankAccount);
+//    }
 
     public void deleteBankAccount(BankAccount bankAccount) {
         String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
         restTemplate.delete(url,bankAccount);
     }
 
+    public void withdraw(int id, BankAccount bankAccount) {
+        String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
+        BankAccount total = getBankAccount(id);
+        total.setBalance(total.getBalance()-bankAccount.getBalance());
+        restTemplate.put(url, total);
+    }
+
+    public void deposit(int id, BankAccount bankAccount) {
+        String url = "http://localhost:8091/api/bankaccount/" + bankAccount.getId();
+        BankAccount total = getBankAccount(id);
+        total.setBalance(total.getBalance()+bankAccount.getBalance());
+        restTemplate.put(url, total);
+    }
 
 
 
