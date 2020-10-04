@@ -34,7 +34,7 @@ public class BankAccountController {
     @GetMapping("/edit/{id}")
     public String getEditBankAccountPage(@PathVariable int id, Model model) {
         BankAccount bankAccount = bankAccountService.getBankAccount(id);
-        model.addAttribute("bankAccount", bankAccount);
+        model.addAttribute("bankaccount", bankAccount);
         return "bankaccount-edit";
     }
 
@@ -48,6 +48,21 @@ public class BankAccountController {
         return "redirect:/bankaccount";
     }
 
+    @PostMapping("/delete/{id}")
+    public String deleteAccount(@PathVariable int  id, @ModelAttribute BankAccount bankAccount, Model model) {
+        BankAccount searchId =  bankAccountService.getBankAccount(id);
+        bankAccountService.deleteBankAccount(searchId);
+        model.addAttribute("bankaccounts", bankAccountService.getBankAccounts());
+        return "redirect:/bankaccount";
+    }
+
+//    @PostMapping("/delete/{id}")
+//    public String deleteAccount(@PathVariable int id, @ModelAttribute BankAccount bankAccount, Model model) {
+//        bankAccountService.deleteBankAccount(bankAccount);
+//        model.addAttribute("bankaccounts", bankAccountService.getBankAccounts());
+//        return "redirect:/bankaccount";
+//
+//    }
 
 }
 
